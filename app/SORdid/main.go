@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/go-chi/middleware"
+	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
 	"github.com/rapenchukd/SORdid/pkgs/api"
 )

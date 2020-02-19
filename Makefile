@@ -11,7 +11,7 @@ DOCKER_IMAGE?=rapenchukd/SORdid
 MYVERSION?=v0.0.1
 SCRATCH_IMAGE?=scratch
 SCRATCH_TAG?=""
-DEP=$(GOPATH)/bin/dep
+MOD=go mod
 
 ifneq ("$(http_proxy)", "")
 PROXY_VARS=http_proxy=$(http_proxy) https_proxy=$(http_proxy)
@@ -36,11 +36,8 @@ ifeq ($(shell [ -t 0 ] && echo 1 || echo 0), 1)
 	TTY=-t
 endif
 
-$(DEP):
-	$(PROXY_VARS) go get github.com/golang/dep/cmd/dep
-
-vendor: $(DEP)
-	$(PROXY_VARS) $(DEP) ensure
+vendor:
+	$(PROXY_VARS) $(MOD) vendor
 
 build/SORdid: clean vendor
 	GOARCH=$(ARCH) go build -o build/SORdid $(PACKAGE)/app/SORdid
