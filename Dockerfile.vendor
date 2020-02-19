@@ -1,0 +1,6 @@
+ARG IMAGE
+ARG TAG
+FROM $IMAGE$TAG
+COPY ./build/SORdid /SORdid
+COPY vendor /SORdid-vendor-sources
+ENTRYPOINT /SORdid
